@@ -1,0 +1,51 @@
+<application>
+
+	<name>VisualCFCTest</name>
+	<author>Shirak Avakian</author>
+	<version>1.0</version>
+	<email>shirakavakian@gmail.com</email>	
+	<description>Visual test for ColdFusion Component methods</description>	
+	<license>license.html</license>
+
+	<install>
+		<wizard width="600" height="400" >
+			<!--<page title="Step 1">
+				<input name="firstname" label="Your First Name" type="string"/>	
+			</page>
+			<page title="Step 2">
+				<input name="name" label="Your Last Name" type="string"/>	
+			</page>	-->		
+		</wizard>	
+	</install>
+	
+	<menucontributions>
+		<contribution target="projectview" >
+			<menu name="Visual CFC Test" >
+				<filters>
+					<filter type="file" pattern="^.+\.((cfc))" />
+				</filters>
+				<action name="As Remote Object" handlerid="testGenerateHandler" showresponse="true"  >
+				</action>
+				<action name="As Web Service" handlerid="WSTestHandler" showresponse="true" >
+					<!--<input name="WebServiceURL" label="WebService URL" type="Text" required="true" tooltip="Please enter your webservice URL"/>	-->		
+				</action>
+			</menu>
+		</contribution>
+		
+		<contribution target="outlineview">
+		</contribution>		
+	</menucontributions>
+	
+	<!--<events>
+		<event type="onProjectCreate" handlerid="projectCreationHandler"/>
+	</events>-->
+	
+	<handlers>
+		<handler id="testGenerateHandler" type="cfm" filename="projectTestGenerateHandler.cfm" />
+		<handler id="WSTestHandler" type="cfm" filename="WSTestGenerateHandler.cfm" />
+		<!--<handler id="postInstallHandler" type="cfm" filename="postInstallHandler.cfm" />
+		<handler id="onProjectCreate" type="cfm" filename="onProjectCreate.cfm" />-->
+	</handlers>
+
+</application>
+
