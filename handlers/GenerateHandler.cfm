@@ -1,11 +1,13 @@
-<!--- 
-  ***************************************************************************
-  LAST MODIFIED ON: $Modtime: 04/02/11 8:05p $ BY USER: $Author: Shirak $
-  LAST CHECKIN ON: $Date: 6/30/11 2:18p $
-  AUTHOR: Shirak 
-  E-MAIL: ShirakAvakian@gmail.com
-  COMPANY: CFFlex Technology, INC. 
-  ***************************************************************************
+<!---
+********************************************************************************
+Author      	:	Shirak Avakian
+Email       	:	Shirak.Avakian@Qbillc.com
+Company  	: 	QBI LLC
+Date        	:	@{Date}
+Component Name  : 	index.cfc
+Description :
+	A description about this page
+********************************************************************************
 --->
 <cfsetting showdebugoutput="no" enablecfoutputonly="true" >
 
@@ -16,8 +18,8 @@
 </cflock>
 
 <cfset application[application.appId] = ideeventinfo>
-<cfset nextUrl = new Framework.Util().generateURL("layoutpage.cfm")>
-<cfset nextUrl &= "?genId=" & #application.appId#>
+<cfset nextUrl = new Framework.Util().generateURL("layout.cfm")>
+<cfset nextUrl &= "?genId=" & application.appId>
 
 <cfheader name="Content-Type" value="text/xml">
 <cfoutput>

@@ -24,11 +24,11 @@
 				<filters>
 					<filter type="file" pattern="^.+\.((cfc))" />
 				</filters>
-				<action name="As Remote Object" handlerid="testGenerateHandler" showresponse="true"  >
+				<action name="As Remote Object" handlerid="GenerateHandler" showresponse="true"  >
 				</action>
-				<action name="As Web Service" handlerid="WSTestHandler" showresponse="true" >
+				<!--<action name="As Web Service" handlerid="WSTestHandler" showresponse="true" >-->
 					<!--<input name="WebServiceURL" label="WebService URL" type="Text" required="true" tooltip="Please enter your webservice URL"/>	-->		
-				</action>
+				<!--</action>-->
 			</menu>
 		</contribution>
 		
@@ -41,8 +41,8 @@
 	</events>-->
 	
 	<handlers>
-		<handler id="testGenerateHandler" type="cfm" filename="projectTestGenerateHandler.cfm" />
-		<handler id="WSTestHandler" type="cfm" filename="WSTestGenerateHandler.cfm" />
+		<handler id="GenerateHandler" type="cfm" filename="GenerateHandler.cfm" />
+		<!--<handler id="WSTestHandler" type="cfm" filename="WSTestGenerateHandler.cfm" />-->
 		<!--<handler id="postInstallHandler" type="cfm" filename="postInstallHandler.cfm" />
 		<handler id="onProjectCreate" type="cfm" filename="onProjectCreate.cfm" />-->
 	</handlers>
