@@ -13,5 +13,5 @@ component  output="true"
 {
 	public string function getName(){
 		return "Shirak";
-	} 
+	}
 }

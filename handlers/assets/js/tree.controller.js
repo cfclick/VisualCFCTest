@@ -2,6 +2,7 @@ function TreeManagement( ){
 	treeManagement = this;
 	
 	this.cfcTree = $('#cfcTree');
+	this.input_cfcmap = $('#input_cfcmap');
 
 	
 	//container
@@ -21,21 +22,21 @@ function TreeManagement( ){
 			showRemoveBtn: false,
 			showRenameBtn: false
 		},
-		/*async: {
-			enable: false,
-			url: this.getUrl
-			//autoParam:["id", "name=n", "level=lv"],
-			//otherParam:{"otherParam":"zTreeAsyncTest"}//,
+		async: {
+			enable: true,
+			url: this.getUrl,
+			autoParam:["id", "name=n", "level=lv"],
+			otherParam:{"otherParam":"zTreeAsyncTest"}//,
 			//dataFilter: filter
-		},*/
-		data: {
+		},
+		/*data: {
 			simpleData: {
 				enable:true,
 				idKey: "id",
 				pIdKey: "pId",
 				rootPId: ""
 			}
-		},
+		},*/
 		callback: {
 			//beforeClick: beforeClick,
 			onClick: onClick,
@@ -94,24 +95,13 @@ function TreeManagement( ){
 			{ name:"pNode 3 - no child", isParent:true}
 
 		];
-	alert(this.zNodes);
+//	alert(this.zNodes);
 	//init the tree	
 	//setTimeout(this.initTree, 1500);
-	$.fn.zTree.init(this.cfcTree, this.setting, this.zNodes );
+	$.fn.zTree.init(this.cfcTree, this.setting );
 	this.zTreeObj = $.fn.zTree.getZTreeObj("cfcTree");
-	alert(this.zTreeObj);
+//	alert(this.zTreeObj);
 	this.setListeners();	
-}
-
-TreeManagement.prototype.config = new Config();
-
-/* init tree */
-TreeManagement.prototype.initTree = function (){
-	$.fn.zTree.init(treeManagement.cfcTree, treeManagement.setting,  treeManagement.zNodes);
-	treeManagement.zTreeObj = $.fn.zTree.getZTreeObj("cfcTree");
-	alert("test");
-	//$('#loading').hide();
-	
 }
 
 
@@ -123,12 +113,10 @@ TreeManagement.prototype.setListeners = function (){
 
 TreeManagement.prototype.getUrl = function( treeId, treeNode ) {
 	var param = '';
-	//var url = treeManagement.config.urls.documentViewer.getCustomerFolderTree;
-	if(treeNode){
-		var sub = treeNode.directory + '\\' + treeNode.id;
-		return treeManagement.config.urls.documentViewer.getCustomerFilesTree + "?customerID=" + treeManagement.customerID.val() + "&directory="+sub;
-	}
-	return treeManagement.config.urls.documentViewer.getCustomerFolderTree + "?customerID=" + treeManagement.customerID.val();
+	
+	if( treeNode=='undefined' || treeNode == null || treeNode=='' )
+		return "http://localhost/VisualCFCTest/handlers/TreeConstructor.cfc?method=loadTree&cfcmap=" + treeManagement.input_cfcmap.val();
+	
 }
 
 /* get data for tree parent & children */
