@@ -18,14 +18,14 @@ function TreeManagement( ){
 			enable: false
 		},
 		edit: {
-			enable: true,
+			enable: false,
 			showRemoveBtn: false,
 			showRenameBtn: false
 		},
 		async: {
 			enable: true,
 			url: this.getUrl,
-			autoParam:["id", "name=n", "level=lv"],
+			autoParam:["id","pId", "name=n", "level=lv"],
 			otherParam:{"otherParam":"zTreeAsyncTest"}//,
 			//dataFilter: filter
 		},
@@ -49,66 +49,21 @@ function TreeManagement( ){
 		}
 	};
 	
-	this.zNodes =[
-			{ name:"pNode 01", open:true,
-				children: [
-					{ name:"pNode 11",
-						children: [
-							{ name:"leaf node 111"},
-							{ name:"leaf node 112"},
-							{ name:"leaf node 113"},
-							{ name:"leaf node 114"}
-						]},
-					{ name:"pNode 12",
-						children: [
-							{ name:"leaf node 121"},
-							{ name:"leaf node 122"},
-							{ name:"leaf node 123"},
-							{ name:"leaf node 124"}
-						]},
-					{ name:"pNode 13 - no child", isParent:true}
-				]},
-			{ name:"pNode 02",
-				children: [
-					{ name:"pNode 21", open:true,
-						children: [
-							{ name:"leaf node 211"},
-							{ name:"leaf node 212"},
-							{ name:"leaf node 213"},
-							{ name:"leaf node 214"}
-						]},
-					{ name:"pNode 22",
-						children: [
-							{ name:"leaf node 221"},
-							{ name:"leaf node 222"},
-							{ name:"leaf node 223"},
-							{ name:"leaf node 224"}
-						]},
-					{ name:"pNode 23",
-						children: [
-							{ name:"leaf node 231"},
-							{ name:"leaf node 232"},
-							{ name:"leaf node 233"},
-							{ name:"leaf node 234"}
-						]}
-				]},
-			{ name:"pNode 3 - no child", isParent:true}
+	this.zNodes = [];
 
-		];
-//	alert(this.zNodes);
 	//init the tree	
 	//setTimeout(this.initTree, 1500);
-	$.fn.zTree.init(this.cfcTree, this.setting );
-	this.zTreeObj = $.fn.zTree.getZTreeObj("cfcTree");
+	
 //	alert(this.zTreeObj);
+	$.fn.zTree.init(treeManagement.cfcTree, treeManagement.setting, this.zNodes );
+	treeManagement.zTreeObj = $.fn.zTree.getZTreeObj("cfcTree");
 	this.setListeners();	
 }
 
 
 TreeManagement.prototype.setListeners = function (){
-	
-}
 
+}
 // tree callback functions
 
 TreeManagement.prototype.getUrl = function( treeId, treeNode ) {
@@ -120,7 +75,6 @@ TreeManagement.prototype.getUrl = function( treeId, treeNode ) {
 }
 
 /* get data for tree parent & children */
-
 
 
 /* On tree item click */
@@ -147,25 +101,28 @@ function onDblClick(event, treeId, treeNode, clickFlag) {
 }
 
 function onClick(event, treeId, treeNode, clickFlag) {
-	//console.log(treeId);
-	//console.log(treeNode);
-	//console.log(main.config.urls.documentViewer.renderFile);
-	
-	/*if( !treeNode.isParent ){
-		$.ajax({
-		  url: main.config.urls.documentViewer.renderFile,
+	console.log(treeId);
+	console.log(treeNode);
+	var nodes = {access:treeNode.access,
+				 returnType:treeNode.returntype,
+				 argumentsCount:treeNode.argumentsCount,
+				 id:treeNode.id,
+				 name:treeNode.name,
+				 cfcmap:treeNode.cfcmap	}
+	$.ajax({
+		  url: "http://localhost/VisualCFCTest/handlers/onFunctionClick.cfm",
 		  cache: false,
-		  data: treeNode,
+		  data: nodes,
 		  beforeSend: function( xhr ) {
-		    treeManagement.documentViewer_pageContent.html( "<h4>Loading... Please wait.</h4>" );
+		    treeManagement.cfc_pageContent.html( "<h4>Loading... Please wait.</h4>" );
 		  }
 		}).done(function( html ) {
-		  	 treeManagement.documentViewer_pageContent.html( html );
+		  	 treeManagement.cfc_pageContent.html( html );
 	  	}).error(function (messsage,obj){
 	  		console.log(message);
 	  		console.log(obj);
 	  	});
-  	}*/
+	
 }
 
 /* right click */

@@ -47,7 +47,7 @@
 		</cfcontent>
 
 		<cfif isdefined("form.submit")>
-			<cfdump var="#form#"><cfabort>
+			
 			<cfset comp = "" />
 			<cfif isDefined("form.ComponentName")>
 
