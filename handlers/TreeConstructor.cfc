@@ -11,6 +11,7 @@ Description :
 */
 component  output="false"
 {
+	
 	remote array function loadTree( required string cfcmap) returnformat="JSON"{
 		
 		var proxy = createobject(cfcmap);
@@ -31,11 +32,11 @@ component  output="false"
 				}
 				f["noR"] = false;
 				f["isDynamic"] = false;
-				f["isParent"] = true;	
+				f["isParent"] = false;	
 				f["drop"] = false;
-				f["drag"] = true;			
+				f["drag"] = false;			
 				
-				//f['icon'] = "includes/images/zTree/edit.png";
+				f['icon'] = "assets/func-icon-public.png";
 				arrayOfFolder.append( f );
 			}
 			

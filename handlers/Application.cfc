@@ -21,9 +21,30 @@
 
 	<cffunction name="OnRequestStart" access="public" returntype="boolean" output="false" hint="Fires at first part of page processing.">
 		<cfargument name="TargetPage" type="string" required="true" />
-		<!---<cfinclude template="style.css.cfm" >--->
+		
 		<!--- Return out. --->
-		<cfreturn true />
+		<cfscript>
+			var headers = getHttpRequestData().headers;
+			var origin = '';
+			var PC = getpagecontext().getresponse();
+			
+			// Find the Origin of the request
+			if( structKeyExists( headers, 'Origin' ) ) {
+				origin = headers['Origin']; 
+			}
+			
+			// If the Origin is okay, then echo it back, otherwise leave out the header key
+			if( listFindNoCase( 'http://localhost,http://localhost:8500', origin ) ) {
+				PC.setHeader( 'Access-Control-Allow-Origin', origin );
+			}
+			// Only allow GET requests
+			PC.setHeader( 'Access-Control-Allow-Methods', 'GET' );
+
+			return true;
+	   	        
+        </cfscript>
+
+	
 	</cffunction>
 
 
