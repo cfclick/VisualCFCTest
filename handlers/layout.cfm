@@ -51,7 +51,7 @@ Description :
 						</div>
 				</div>
 				
-				<div class="col-sm-7">
+				<div class="col-sm-8">
 					<div id="cfc_pageContent"><cfdump var="#ide#"></div>
 				</div>
 			</div>

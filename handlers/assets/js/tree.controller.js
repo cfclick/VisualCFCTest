@@ -3,7 +3,7 @@ function TreeManagement( ){
 	
 	this.cfcTree = $('#cfcTree');
 	this.input_cfcmap = $('#input_cfcmap');
-
+	
 	
 	//container
 	this.cfc_pageContent = $('#cfc_pageContent');
@@ -62,7 +62,7 @@ function TreeManagement( ){
 
 
 TreeManagement.prototype.setListeners = function (){
-
+	
 }
 // tree callback functions
 
